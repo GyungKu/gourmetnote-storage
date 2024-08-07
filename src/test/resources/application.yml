@@ -1,0 +1,11 @@
+server:
+  port: 2121
+
+
+cors:
+  origins: origins
+
+upload:
+  image:
+    dir: dir
+    path: path
