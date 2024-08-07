@@ -1,0 +1,6 @@
+server:
+  port: 2121
+
+
+cors:
+  origins: ${CORS_ORIGINS}
