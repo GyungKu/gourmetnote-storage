@@ -10,12 +10,16 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Value("${cors.origins}")
     private String corsOrigins;
-
+    @Value("${upload.image.dir}")
+    private String dir;
+    @Value("${upload.image.path}")
+    private String path;
 
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        WebMvcConfigurer.super.addResourceHandlers(registry);
+        registry.addResourceHandler(path)
+                .addResourceLocations("file:" + dir);
     }
 
     @Override

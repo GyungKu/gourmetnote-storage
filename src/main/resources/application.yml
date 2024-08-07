@@ -4,3 +4,8 @@ server:
 
 cors:
   origins: ${CORS_ORIGINS}
+
+upload:
+  image:
+    dir: ${UPLOAD_IMAGE_DIR}
+    path: ${UPLOAD_IMAGE_PATH}
