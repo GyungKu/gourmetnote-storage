@@ -17,6 +17,9 @@ public class StorageService {
     @Value("${upload.image.dir}")
     private String dir;
 
+    @Value("${upload.image.url}")
+    private String url;
+
     public List<ResponseFile> saveFiles(List<MultipartFile> files) throws IOException {
         if (files == null) return new ArrayList<>();
 
@@ -29,10 +32,18 @@ public class StorageService {
             responseFiles.add(ResponseFile.builder()
                     .originName(originName)
                     .saveName(saveFileName)
+                    .url(url + saveFileName)
                     .build());
         }
 
         return responseFiles;
+    }
+
+    public void deleteFilesFromSaveNames(List<String> saveNames) {
+        saveNames.forEach(name -> {
+            File file = new File(dir + name);
+            if (file.exists()) file.delete();
+        });
     }
 
     private String getSaveFileName(String originName) {

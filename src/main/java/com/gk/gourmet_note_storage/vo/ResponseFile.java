@@ -5,6 +5,7 @@ import lombok.Builder;
 @Builder
 public record ResponseFile(
         String originName,
-        String saveName
+        String saveName,
+        String url
 ) {
 }

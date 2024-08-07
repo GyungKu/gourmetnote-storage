@@ -1,13 +1,11 @@
 package com.gk.gourmet_note_storage.controller;
 
 import com.gk.gourmet_note_storage.service.StorageService;
+import com.gk.gourmet_note_storage.vo.DeleteNames;
 import com.gk.gourmet_note_storage.vo.ResponseFile;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -24,5 +22,12 @@ public class StorageController {
     public ResponseEntity<List<ResponseFile>> saveFiles(@RequestPart List<MultipartFile> files) throws IOException {
         List<ResponseFile> responseFiles = storageService.saveFiles(files);
         return ResponseEntity.ok(responseFiles);
+    }
+
+    @DeleteMapping
+    public ResponseEntity<String> deleteFiles(@RequestBody DeleteNames deleteNames) {
+        storageService.deleteFilesFromSaveNames(deleteNames.saveNames());
+
+        return ResponseEntity.ok("Deleted Images");
     }
 }
